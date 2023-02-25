@@ -1,4 +1,5 @@
-# This Project is a demonstration of how on chain voting and propals will work
+# Simple Doa
+This Project is a demonstration of how on chain voting and propals will work
 
 
 # Hardhat
