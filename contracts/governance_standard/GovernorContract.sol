@@ -5,19 +5,28 @@ import "@openzeppelin/contracts/governance/Governor.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorSettings.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorCountingSimple.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
+import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
 
-contract MyGovernor is Governor, GovernorSettings, GovernorCountingSimple, GovernorVotes, GovernorTimelockControl {
-    constructor(IVotes _token, TimelockController _timelock)
-        Governor("MyGovernor")
-        GovernorSettings(1 /* 1 block */, 18783 /* 1 week */, 0)
+contract GovernorContract is Governor, GovernorSettings, GovernorCountingSimple, GovernorVotes, GovernorVotesQuorumFraction, GovernorTimelockControl {
+    constructor(
+        IVotes _token,
+        TimelockController _timelock,
+        uint256 _votingDelay,
+        uint256 _votingPeriod,
+        uint256 quoromPercentage
+        
+        )
+        Governor("GovernorContract")
+        GovernorSettings(
+            _votingDelay /* 1 block */,
+            _votingPeriod /* 1 week */,
+            0
+        )
         GovernorVotes(_token)
+        GovernorVotesQuorumFraction(quoromPercentage)
         GovernorTimelockControl(_timelock)
     {}
-
-    function quorum(uint256 blockNumber) public pure override returns (uint256) {
-        return 4e18;
-    }
 
     // The following functions are overrides required by Solidity.
 
@@ -37,6 +46,15 @@ contract MyGovernor is Governor, GovernorSettings, GovernorCountingSimple, Gover
         returns (uint256)
     {
         return super.votingPeriod();
+    }
+
+    function quorum(uint256 blockNumber)
+        public
+        view
+        override(IGovernor, GovernorVotesQuorumFraction)
+        returns (uint256)
+    {
+        return super.quorum(blockNumber);
     }
 
     function state(uint256 proposalId)
