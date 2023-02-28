@@ -14,13 +14,13 @@ const deployGovernanceToken: DeployFunction = async function (
         args: [],
         log: true,
     });
-    log(`Deployed governance token to address ${governanceToken.address} Bro Bro`)
+    log(`Deployed governance token to address ${governanceToken.address} Bro Bro`);
     await delegate(governanceToken.address, deployer);
     log("Delegated Successfully!")
 };
 
 const delegate = async (governanceTokenAddress: string, delegatedAccount: string) => {
-    const governanceToken = await ethers.getContracdtAt("GovernaceToken", governanceTokenAddrsss);
+    const governanceToken = await ethers.getContractAt("GovernanceToken", governanceTokenAddress);
     const tx = await governanceToken.delegate(delegatedAccount);
     await tx.wait(1);
     console.log(`Checkpoints ${await governanceToken.numCheckpoints(delegatedAccount)}`)
