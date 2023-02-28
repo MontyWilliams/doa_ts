@@ -17,8 +17,11 @@ const deployGovernanceToken: DeployFunction = async function (
     log(`Deployed governance token to address ${governanceToken.address} Bro Bro`)
 };
 
-const delegate = async (governanceTokenAddrsss: string, deletedAccount: string) => {
+const delegate = async (governanceTokenAddress: string, delegatedAccount: string) => {
     const governanceToken = await ethers.getContracdtAt("GovernaceToken", governanceTokenAddrsss);
+    const tx = await governanceToken.delegate(delegatedAccount);
+    await tx.wait(1);
+    console.log(`Checkpoints ${await governanceToken.numCheckpoints(delegatedAccount)}`)
 }
 
 export default deployGovernanceToken
