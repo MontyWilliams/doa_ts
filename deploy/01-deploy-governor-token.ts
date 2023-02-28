@@ -16,7 +16,7 @@ const deployGovernanceToken: DeployFunction = async function (
     });
     log(`Deployed governance token to address ${governanceToken.address} Bro Bro`)
     await delegate(governanceToken.address, deployer);
-    log("Vote Delegated Successfully")
+    log("Delegated Successfully!")
 };
 
 const delegate = async (governanceTokenAddress: string, delegatedAccount: string) => {
