@@ -25,3 +25,4 @@ const setupContracts: DeployFunction = async Function (
     await revokeTx.wait(1);
     
 };
+export default setupContracts; 
