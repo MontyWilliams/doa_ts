@@ -1,10 +1,10 @@
 import { ethers } from 'hardhat'
-import { FUNC, NEW_STORE_VALUE } from '../helper-hardhat-configuration.ts'
+import { FUNC, NEW_STORE_VALUE } from '../helper-hardhat-config.ts'
 
 export async function propose(args: any[], functionToCall: string) {
-    const governor = await ethers.getContract("GovernorContracts");
+    const governor = await ethers.getContract("GovernorContract");
     const box = await ethers.getContract("Box");
-    const encodedFuncitonCall = box.interface.encodeFunctionData(
+    const encodedFunctionCall = box.interface.encodeFunctionData(
         functionToCall,
         args
     );
