@@ -1,6 +1,6 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types"
-import { DeployerFunction } from "hardhat/types"
-import { ethers } from "ethers"
+import { DeployFunction } from "hardhat/types"
+import { ethers } from "hardhat"
 
 const deployContract: DeployerFunction = async function (
     hre: HardhatRuntimeEnvironment
