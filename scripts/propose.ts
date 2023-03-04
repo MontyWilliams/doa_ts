@@ -1,5 +1,5 @@
 import { ethers, network } from 'hardhat'
-import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION, VOTING_DELAY } from '../helper-hardhat-config.ts'
+import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION, VOTING_DELAY, developmentChains, proposals } from '../helper-hardhat-config.ts'
 import { moveBlocks } from "../utils/move-blocks";
 
 export async function propose(args: any[], functionToCall: string, proposalDescription: string) {
