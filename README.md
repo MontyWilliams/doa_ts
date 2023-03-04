@@ -10,3 +10,8 @@ Testing the contract creates an artifacts folder that is baically a static build
 ```
 Hardhat compile
 ```
+# Interacting with the contract
+When the contract is deployed the value is set to zero.
+
+## helper hardhat config
+This file is used to import mock data for development purposes. We use it bacically as a state manager to simulate the data types we would expect in an actual envirnment.
