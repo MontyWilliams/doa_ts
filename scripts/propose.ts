@@ -17,10 +17,14 @@ export async function propose(args: any[], functionToCall: string, proposalDescr
         [encodedFunctionCall],
         proposalDescription
     );
-    proposeTx.wait(1)
+    // propose Receipt is derived from an emitter event in proposal contract
+    const proposeReceipt = proposeTx.wait(1)
+
     if(developmentChains.includes(network.name)){
         await moveBlocks(VOTING_DELAY + 1)
     }
+
+    const proposalId = proposeReceipt.event[0].args.propoaslId;
 }
 
 propose([NEW_STORE_VALUE], FUNC, PROPOSAL_DESCRIPTION)
