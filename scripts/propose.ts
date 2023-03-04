@@ -9,8 +9,14 @@ export async function propose(args: any[], functionToCall: string, proposalDescr
         args
     );
     console.log(`Proposing ${functionToCall} on ${box.address} with ${args}`)
-    console.log(`Proposal Description \n ${proposalDescription}  `)
-    
+    console.log(`Proposal Description \n ${proposalDescription}`)
+    const proposeTx = await governor.propose(
+        [cox.address],
+        [0],
+        [encodedFunctionCall],
+        proposalDescription
+    );
+    proposeTx.wait(1)
 }
 
 propose([NEW_STORE_VALUE], FUNC, PROPOSAL_DESCRIPTION)
