@@ -1,4 +1,4 @@
-import { ethers } from 'hardhat'
+import { ethers, network } from 'hardhat'
 import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION } from '../helper-hardhat-config.ts'
 
 export async function propose(args: any[], functionToCall: string, proposalDescription: string) {
@@ -11,7 +11,7 @@ export async function propose(args: any[], functionToCall: string, proposalDescr
     console.log(`Proposing ${functionToCall} on ${box.address} with ${args}`)
     console.log(`Proposal Description \n ${proposalDescription}`)
     const proposeTx = await governor.propose(
-        [cox.address],
+        [box.address],
         [0],
         [encodedFunctionCall],
         proposalDescription
