@@ -19,7 +19,7 @@ export async function propose(args: any[], functionToCall: string, proposalDescr
         proposalDescription
     );
     // propose Receipt is derived from an emitter event in proposal contract
-    const proposeReceipt = proposeTx.wait(1)
+    const proposeReceipt = await proposeTx.wait(1)
 
     if(developmentChains.includes(network.name)){
         await moveBlocks(VOTING_DELAY + 1)
