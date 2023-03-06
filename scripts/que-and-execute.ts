@@ -1,4 +1,4 @@
-import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION } from "../helper-hardhat-config";
+import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION, MIN_DELAY } from "../helper-hardhat-config";
 import { ethers } from "hardhat"
 import { moveTime } from '../utils/move-time' 
 import { moveBlocks } from '../utils/move-blocks' 
