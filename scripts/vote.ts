@@ -1,10 +1,10 @@
 import * as fs from 'fs';
-import { proposalsFile, VOTING_PERIOD } from '../helper-hardhat-config'
+import { proposalsFile, VOTING_PERIOD, developmentChains} from '../helper-hardhat-config'
 import { network, ethers } from 'hardhat'
 import { moveBlocks } from '../utils/move-blocks'
 
 const proposalIndex = 0;
-async function vote(proposalIndex: nunmber) {
+async function main(proposalIndex: nunmber) {
     const proposals = JSON.parse(fs.readFileSync(proposalsFile, 'utf8'));
     const proposalsId = proposals[network.config.chainId!][proposalIndex];
     // 0 = Against, 1 = For, 2 = Abstain
@@ -17,13 +17,13 @@ async function vote(proposalIndex: nunmber) {
         reason
     )
     await voteTxResponse.wait(1)
-    if (developmentChain.includes(network.name)) {
+    if (developmentChains.includes(network.name)) {
         await moveBlocks(VOTING_PERIOD + 1);
     }
-    conslole.log("Voted Broo, Broo, Yea, Yea")
+    console.log("Voted Broo, Broo, Yea, Yea")
 }
 
-vote(index)
+main(proposalIndex)
     .then(() => process.exit(0))
     .catch((error) => {
         console.log(error)
