@@ -7,7 +7,7 @@ export async function queueAndExecute(){
     const args = [NEW_STORE_VALUE];
     const box = await ethers.getContract("Box");
     const encodedFunctionCall = box.interface.encodeFunctionData(FUNC, args);
-    const descriptionHash = ethers.utils.keccack256(
+    const descriptionHash = ethers.utils.keccak256(
         ethers.utils.toUtf8Bytes(PROPOSAL_DESCRIPTION)
     );
     
