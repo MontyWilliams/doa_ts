@@ -1,3 +1,7 @@
 /node_modules/
 /artifacts/
 /cache/
+.gitignore
+yarn-error.log
+yarn.lock
+packag-lock.json

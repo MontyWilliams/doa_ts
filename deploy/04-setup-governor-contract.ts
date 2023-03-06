@@ -4,7 +4,7 @@ import { ethers} from "hardhat"
 import { ADDRESS_ZERO } from "../helper-hardhat-config.ts"
 
 const setupContracts: DeployFunction = async function (
-    hre: HrdhatRuntimeEnviornment
+    hre: HardhatRuntimeEnviornment
 ) {
     // @ts-ignore
     const { getNamedAccounts, deployments } = hre;

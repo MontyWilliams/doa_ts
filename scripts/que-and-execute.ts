@@ -1,4 +1,4 @@
-import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION, MIN_DELAY, developmentChain } from "../helper-hardhat-config";
+import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION, MIN_DELAY, developmentChains } from "../helper-hardhat-config";
 import { ethers } from "hardhat"
 import { moveTime } from '../utils/move-time' 
 import { moveBlocks } from '../utils/move-blocks' 
@@ -21,7 +21,7 @@ export async function queueAndExecute(){
     );
     await queueTx.await(1)
 
-    if(developmentChain.includes(network.name)) {
+    if(developmentChains.includes(network.name)) {
         await moveTime(MIN_DELAY + 1);
         await moveBlocks(1);
     }
