@@ -4,8 +4,8 @@ import { network } from 'hardhat'
 
 const index = 0;
 async function main(proposalIndex: nunmber) {
-    const proposal = JSON.parse(fs.readFileSync(proposalsFile, 'utf8'));
-
+    const proposals = JSON.parse(fs.readFileSync(proposalsFile, 'utf8'));
+    const proposalsId = proposals[network.config.chainId!][proposalIndex];
 }
 
 main(index)
