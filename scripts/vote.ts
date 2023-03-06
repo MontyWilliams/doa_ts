@@ -4,7 +4,7 @@ import { network, ethers } from 'hardhat'
 import { moveBlocks } from '../utils/move-blocks'
 
 const proposalIndex = 0;
-async function main(proposalIndex: nunmber) {
+async function vote(proposalIndex: nunmber) {
     const proposals = JSON.parse(fs.readFileSync(proposalsFile, 'utf8'));
     const proposalsId = proposals[network.config.chainId!][proposalIndex];
     // 0 = Against, 1 = For, 2 = Abstain
@@ -23,7 +23,7 @@ async function main(proposalIndex: nunmber) {
     conslole.log("Voted Broo, Broo, Yea, Yea")
 }
 
-main(index)
+vote(index)
     .then(() => process.exit(0))
     .catch((error) => {
         console.log(error)
