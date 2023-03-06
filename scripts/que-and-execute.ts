@@ -34,6 +34,9 @@ export async function queueAndExecute(){
         descriptionHash
     );
     await executeTx.wait(1)
+
+    const boxNewValue = await box.retrieve();
+    console.log(`New Box Value: ${boxNewValue.toString()}`)
 }
 
 queueAndExecute(index)
