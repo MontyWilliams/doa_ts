@@ -1,4 +1,4 @@
-import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION, MIN_DELAY } from "../helper-hardhat-config";
+import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION, MIN_DELAY, developmentChain } from "../helper-hardhat-config";
 import { ethers } from "hardhat"
 import { moveTime } from '../utils/move-time' 
 import { moveBlocks } from '../utils/move-blocks' 
@@ -6,7 +6,7 @@ import { moveBlocks } from '../utils/move-blocks'
 export async function queueAndExecute(){
     const args = [NEW_STORE_VALUE];
     const box = await ethers.getContract("Box");
-    const encodedFunctionCall = box.interface.encodeFunctonData(FUNC, args);
+    const encodedFunctionCall = box.interface.encodeFunctionData(FUNC, args);
     const descriptionHash = ethers.utils.keccack256(
         ethers.utils.toUtf8Bytes(PROPOSAL_DESCRIPTION)
     );
@@ -39,7 +39,7 @@ export async function queueAndExecute(){
     console.log(`New Box Value: ${boxNewValue.toString()}`)
 }
 
-queueAndExecute(index)
+queueAndExecute()
     .then(() => process.exit(0))
     .catch((error) => {
         console.log(error)
