@@ -1,6 +1,7 @@
 import * as fs from 'fs';
-import { proposalsFile } from '../helper-hardhat-config'
+import { proposalsFile, VOTING_PERIOD } from '../helper-hardhat-config'
 import { network, ethers } from 'hardhat'
+import { moveBlocks } from '../utils/moveBlocks'
 
 const index = 0;
 async function main(proposalIndex: nunmber) {
@@ -16,6 +17,9 @@ async function main(proposalIndex: nunmber) {
         reason
     )
     await voteTxResponse.wait(1)
+    if (developmentChains.includes(network.name)) {
+        await moveBlocks(VOTING_PERIOD + 1);
+    }
 }
 
 main(index)
