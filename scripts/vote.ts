@@ -9,7 +9,12 @@ async function main(proposalIndex: nunmber) {
     // 0 = Against, 1 = For, 2 = Abstain
     const voteWay = 1;
     const governor = await ethers.getContract("GovernorContract")
-    const voteTxResponse = await governor.cast;
+    const reason = "The reason! the reasons that we live"
+    const voteTxResponse = await governor.castVoteWithReason;(
+        proposalId,
+        voteWay,
+        reason
+    )
 
 }
 
