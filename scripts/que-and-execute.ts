@@ -9,6 +9,15 @@ export async function queueAndExecute(){
         ethers.utils.toUtf8Bytes(PROPOSAL_DESCRIPTION)
     );
     
+    const governor = await ethers.getContract("GovernorContract")
+    console.log("Queueing....")
+    const queueTx = await governor.queue(
+        [box.address],
+        [0],
+        [encodedFunctionCall],
+        descriptionHash
+    );
+    await queueTx.await(1)
 }
 
 queueAndExecute(index)
