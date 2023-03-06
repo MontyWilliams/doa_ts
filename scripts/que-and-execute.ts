@@ -25,6 +25,15 @@ export async function queueAndExecute(){
         await moveTime(MIN_DELAY + 1);
         await moveBlocks(1);
     }
+
+    console.log("Executing...");
+    const executeTx = await governor.execute(
+        [box.address],
+        [0],
+        [encodedFunctionCall],
+        descriptionHash
+    );
+    await executeTx.wait(1)
 }
 
 queueAndExecute(index)
