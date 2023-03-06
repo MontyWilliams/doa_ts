@@ -1,5 +1,7 @@
 import { FUNC, NEW_STORE_VALUE, PROPOSAL_DESCRIPTION } from "../helper-hardhat-config";
 import { ethers } from "hardhat"
+import { moveTime } from '../utils/move-time' 
+import { moveBlocks } from '../utils/move-blocks' 
 
 export async function queueAndExecute(){
     const args = [NEW_STORE_VALUE];
@@ -18,6 +20,11 @@ export async function queueAndExecute(){
         descriptionHash
     );
     await queueTx.await(1)
+
+    if(developmentChain.includes(network.name)) {
+        await moveTime(MIN_DELAY + 1);
+        await moveBlocks(1);
+    }
 }
 
 queueAndExecute(index)
